@@ -1,3 +1,4 @@
+##needs correction
 theBoard={'top-L':'  ' ,'top-M':'  ','top-R':'  ','mid-L':'  ','mid-M':'  ','mid-R':'  ','low-L':'  ','low-M':'  ','low-R':'  '}
 def printBoard(board):
     print(board['top-L']+'|'+board['top-M']+'|'+board['top-R'])
@@ -8,11 +9,21 @@ def printBoard(board):
 turn='X'
 for i in range(9):
     printBoard(theBoard)
-    print('Turn for'+turn+'.Move on which space?')
-    move=input()
-    theBoard[move]=turn
-    if turn=='X':
-        turn='0'
-    else:
-       turn='X'
+    if i>4:
+        if theBoard['top-L']==theBoard['top-M'] and theBoard['top-M']==theBoard['top-R']:
+            print("WINNER")
+            break
+    while True:
+        print('Turn for'+turn+'.Move on which space?')
+        move=input()
+        if move not in theBoard.keys() and move!=" ":
+           print("wrong input")
+        else:
+           theBoard[move]=turn
+           break
+        if turn=='X':
+            turn='0'
+        else:
+           turn='X'
 printBoard(theBoard)            
+
